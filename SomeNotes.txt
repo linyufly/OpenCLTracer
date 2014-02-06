@@ -1,0 +1,55 @@
+Global {
+
+boost::unordered_map<int, int> interestingBlockMap;
+	Map global block ID to interesting block ID
+
+boost::unordered_map<lcs::BlockTetrahedronPair, int, lcs::HashForBlockTetrahedronPair> localCellIDMap;
+	Map (global block ID, global tetrahedron ID) to local tetrahedron ID
+
+lcs::BlockRecord **blocks;
+	Index is interesting block ID.
+
+int *startOffsetInCell, *startOffsetInPoint;
+	Index is interesting block ID.
+
+int *initialCellLocations;
+	Index is global grid point ID, 0 .. (xRes + 1) * (yRes + 1) * (zRes + 1) - 1.
+
+lcs::ParticleRecord **particleRecords;
+	Index is initial active particle (in-cell grid point) ID.
+
+}
+
+void Tracing() {
+
+int *activeParticles;
+	It stores initial active particle IDs of active particles. It is indeed a map from active particle ID to initial active particle ID.
+
+int *cellLocations;
+	Its index corresponds to the index of activeParticles. It stores the cell (indicated by global tetrahedron ID) of active particles.
+
+int *blockLocations;
+	Its index corresponds to the index of activeParticles. It stores the global block ID of active particles.
+
+int *countParticlesInInterestingBlocks;
+	Index is interesting block ID.
+
+int *marks;
+	Index corresponds to countParticlesInInterestingBlocks;
+
+int *activeBlockIDs;
+	Index is interesting block ID.
+
+int *activeBlockIDList;
+	It is a map from active block ID to interesting block ID.
+
+int *startOffsetInParticle;
+	Index is active block ID.
+
+int *blockedActiveParticleIDList;
+	It stores initial active particle IDs sectioned by their active block IDs.
+
+int *topOfActiveBlocks;
+	Index is active block ID.
+
+}
